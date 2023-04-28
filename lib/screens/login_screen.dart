@@ -18,9 +18,10 @@ class _LoginScreenState extends State<LoginScreen> {
   Color _borderColorPass = Colors.grey;
   final emailController = TextEditingController();
   final passController = TextEditingController();
-  RegExp emailRegex = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-  RegExp passRegex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{6,}$');
-
+  RegExp emailRegex = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+  RegExp passRegex =
+      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{6,}$');
 
   @override
   void initState() {
@@ -120,13 +121,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderSide: BorderSide(color: lightGray)),
                     ),
                     validator: (value) {
-                      if(value!.isEmpty){
+                      if (value!.isEmpty) {
                         return "Please Enter Email";
-                      }
-                      else{
-                        if(!emailRegex.hasMatch(value)){
+                      } else {
+                        if (!emailRegex.hasMatch(value)) {
                           return "Please Enter Valid EmailId";
-                        }else{
+                        } else {
                           return null;
                         }
                       }
@@ -141,19 +141,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextFormField(
                     focusNode: _focusNodePass,
                     controller: passController,
-                    validator: (value){
-                      if(value!.isEmpty){
+                    validator: (value) {
+                      if (value!.isEmpty) {
                         return "Please Enter Password";
-                      }
-                      else{
-                        if(!passRegex.hasMatch(value)){
+                      } else {
+                        if (!passRegex.hasMatch(value)) {
                           return "Please Enter Valid Password";
-                        }else{
+                        } else {
                           return null;
                         }
                       }
                     },
-
                     decoration: textFieldBorder(
                       borderColor: _borderColorPass,
                       suffixIcon: const Icon(Icons.remove_red_eye),
@@ -169,14 +167,125 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Text(
-                        "Forgot Password?",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: darkBlue,
-                            decoration: TextDecoration.underline,
-                            fontFamily: "FontMainBold"),
+                      child: InkWell(
+                        onTap: () {
+                          showModalBottomSheet(
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(21),
+                                topRight: Radius.circular(21),
+                              ),
+                            ),
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Center(
+                                child: Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 16.0),
+                                          child: InkWell(
+                                              child: Icon(Icons.close,
+                                                  color: darkBlue),
+                                              onTap: () {
+                                                Navigator.pop(context);
+                                              }),
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.only(left: 75.0),
+                                          child: Text(
+                                            "Forgot Password",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 22,
+                                                color: Color(0xff1E4884)),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 50,
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: TextFormField(
+                                        /*focusNode: _focusNodeEmail,
+                  controller: emailController,*/
+
+                                        decoration: InputDecoration(
+                                          hintText: "Enter Email Id",
+                                          labelText: "Email Id",
+                                          hintStyle:
+                                              TextStyle(color: lightGray55),
+                                          labelStyle:
+                                              TextStyle(color: _borderColor),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            borderSide:
+                                                BorderSide(color: darkBlue),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                              borderSide:
+                                                  BorderSide(color: lightGray)),
+                                        ),
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return "Please Enter Email";
+                                          } else {
+                                            if (!emailRegex.hasMatch(value)) {
+                                              return "Please Enter Valid EmailId";
+                                            } else {
+                                              return null;
+                                            }
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 32),
+                                      width: double.maxFinite,
+                                      height: 40,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    const Color(0xff1E4884))),
+                                        child: const Text("SEND"),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: Text(
+                          "Forgot Password?",
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: darkBlue,
+                              decoration: TextDecoration.underline,
+                              fontFamily: "FontMainBold"),
+                        ),
                       ),
                     )
                   ],
@@ -191,7 +300,85 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: double.maxFinite,
                     height: 44,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Dialog(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0)),
+                                //this right here
+                                child: Container(
+                                  height: 150,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          const Text(
+                                            "Do you want to add the learner?",
+                                            style: TextStyle(
+                                                color: Color(0xff1E4884),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20),
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+
+                                              SizedBox(
+                                                width: 140,
+                                                child: OutlinedButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  style: OutlinedButton.styleFrom(
+                                                      side: BorderSide(
+                                                          color: darkGray,
+                                                          width: 1)),
+                                                  child: const Text(
+                                                    "CANCEL",
+                                                    style: TextStyle(
+                                                        color: Color(0xff1E4884),
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 20),
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 140,
+                                                child: ElevatedButton(
+                                                  onPressed: () {},
+                                                  style: ButtonStyle(
+
+                                                    backgroundColor:
+                                                        MaterialStateProperty.all(
+                                                      Color(0xff1E4884),
+                                                    ),
+                                                  ),
+                                                  child: const Text(
+                                                    "OKAY",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 20),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            });
+                      },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(darkBlue),
                       ),
