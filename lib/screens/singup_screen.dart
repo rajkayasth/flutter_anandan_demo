@@ -29,6 +29,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     'Other',
   ];
   String dropdownvalue = 'Item 1';
+  bool isClicked = false;
+
 
   @override
   void initState() {
@@ -95,15 +97,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           crossAxisSpacing: 8,
                           mainAxisSpacing: 8),
                       itemBuilder: (context, index) {
-                        return Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: lightGray55)),
-                          child: Image.asset(
-                            userImageList[index].imagePath,
-                            width: 30,
-                            height: 30,
+                        return InkWell(
+                          onTap: (){
+                            setState(() {
+                              isClicked = !isClicked;
+                            });
+                          },
+                          child: Container(
+                            height: 60,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                /*border: Border.all(color: lightGray55)*/
+                            border: !isClicked ? Border.fromBorderSide(BorderSide(color: lightGray55,width: 3)) : Border.fromBorderSide(BorderSide(color: darkBlue,width: 3))
+                            ),
+                            child: Image.asset(
+                              userImageList[index].imagePath,
+                              width: 30,
+                              height: 30,
+                            ),
                           ),
                         );
                       },
@@ -134,7 +145,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           borderRadius: BorderRadius.circular(4),
                           borderSide: BorderSide(color: darkBlue),
                         ),
-                        enabledBorder: OutlineInputBorder(
+                        border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4),
                             borderSide: BorderSide(color: lightGray)),
                       ),
@@ -165,7 +176,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           borderRadius: BorderRadius.circular(4),
                           borderSide: BorderSide(color: darkBlue),
                         ),
-                        enabledBorder: OutlineInputBorder(
+                        border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4),
                             borderSide: BorderSide(color: lightGray)),
                       ),
@@ -196,7 +207,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           borderRadius: BorderRadius.circular(4),
                           borderSide: BorderSide(color: darkBlue),
                         ),
-                        enabledBorder: OutlineInputBorder(
+                        border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4),
                             borderSide: BorderSide(color: lightGray)),
                       ),
@@ -229,7 +240,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           borderRadius: BorderRadius.circular(4),
                           borderSide: BorderSide(color: darkBlue),
                         ),
-                        enabledBorder: OutlineInputBorder(
+                        border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4),
                             borderSide: BorderSide(color: lightGray)),
                       ),
@@ -272,7 +283,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           borderRadius: BorderRadius.circular(4),
                           borderSide: BorderSide(color: darkBlue),
                         ),
-                        enabledBorder: OutlineInputBorder(
+                        border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4),
                             borderSide: BorderSide(color: lightGray)),
                       ),
@@ -370,7 +381,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         borderRadius: BorderRadius.circular(4),
                         borderSide: BorderSide(color: darkBlue),
                       ),
-                      enabledBorder: OutlineInputBorder(
+                      border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
                           borderSide: BorderSide(color: lightGray)),
                     ),
@@ -401,7 +412,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         borderRadius: BorderRadius.circular(4),
                         borderSide: BorderSide(color: darkBlue),
                       ),
-                      enabledBorder: OutlineInputBorder(
+                      border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
                           borderSide: BorderSide(color: lightGray)),
                     ),
@@ -432,7 +443,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         borderRadius: BorderRadius.circular(4),
                         borderSide: BorderSide(color: darkBlue),
                       ),
-                      enabledBorder: OutlineInputBorder(
+                      border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
                           borderSide: BorderSide(color: lightGray)),
                     ),
@@ -465,7 +476,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         borderRadius: BorderRadius.circular(4),
                         borderSide: BorderSide(color: darkBlue),
                       ),
-                      enabledBorder: OutlineInputBorder(
+                      border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
                           borderSide: BorderSide(color: lightGray)),
                     ),
@@ -508,7 +519,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         borderRadius: BorderRadius.circular(4),
                         borderSide: BorderSide(color: darkBlue),
                       ),
-                      enabledBorder: OutlineInputBorder(
+                      border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
                           borderSide: BorderSide(color: lightGray)),
                     ),

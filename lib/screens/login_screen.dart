@@ -2,6 +2,7 @@ import 'package:anandan_demo_flutter/screens/singup_screen.dart';
 import 'package:anandan_demo_flutter/ui_helper/custom_colors.dart';
 import 'package:anandan_demo_flutter/ui_helper/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -108,17 +109,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     focusNode: _focusNodeEmail,
                     controller: emailController,
                     decoration: InputDecoration(
-                      hintText: "Enter your email id",
-                      labelText: "Email ID",
-                      hintStyle: TextStyle(color: lightGray55),
-                      labelStyle: TextStyle(color: _borderColor),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4),
-                        borderSide: BorderSide(color: darkBlue),
+                      hintText: "Enter Email Id",
+                      labelText: "Email",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
                       ),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4),
-                          borderSide: BorderSide(color: lightGray)),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(style: BorderStyle.solid),
+                      ),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -152,9 +150,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                       }
                     },
-                    decoration: textFieldBorder(
-                      borderColor: _borderColorPass,
-                      suffixIcon: const Icon(Icons.remove_red_eye),
+                    decoration: InputDecoration(
+                      hintText: "Enter Password",
+                      labelText: "Password",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(style: BorderStyle.solid),
+                      ),
                     ),
                   ),
                 ),
@@ -378,6 +382,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               );
                             });
+                       /* if(_formStateKey.currentState!.validate()){
+                          Toast.show("Validation Item",
+                              duration: Toast.lengthShort, gravity: Toast.bottom);
+                        }*/
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(darkBlue),
