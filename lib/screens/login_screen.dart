@@ -2,6 +2,7 @@ import 'package:anandan_demo_flutter/screens/singup_screen.dart';
 import 'package:anandan_demo_flutter/ui_helper/custom_colors.dart';
 import 'package:anandan_demo_flutter/ui_helper/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:toast/toast.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -19,6 +20,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Color _borderColorPass = Colors.grey;
   final emailController = TextEditingController();
   final passController = TextEditingController();
+  bool _invalidValue = false;
+
   RegExp emailRegex = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   RegExp passRegex =
@@ -29,12 +32,12 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
     _focusNodeEmail.addListener(() {
       setState(() {
-        _borderColor = _focusNodeEmail.hasFocus ? darkBlue : Colors.grey;
+        _borderColor = _focusNodeEmail.hasFocus ? CustomColor.darkBlue : Colors.grey;
       });
     });
     _focusNodePass.addListener(() {
       setState(() {
-        _borderColorPass = _focusNodePass.hasFocus ? darkBlue : Colors.grey;
+        _borderColorPass = _focusNodePass.hasFocus ? CustomColor.darkBlue : Colors.grey;
       });
     });
   }
@@ -86,14 +89,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.push(
+                       /* Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const SignUpScreen()));
+                                builder: (context) => const SignUpScreen()));*/
+
+                        context.go('/signUp');
                       },
                       child: Text(
                         "Sign Up",
-                        style: titleTextStyle20(textColor: darkBlue)
+                        style: titleTextStyle20(textColor: CustomColor.darkBlue)
                             .copyWith(fontFamily: 'FontMainBold'),
                       ),
                     ),
@@ -108,15 +113,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextFormField(
                     focusNode: _focusNodeEmail,
                     controller: emailController,
-                    decoration: InputDecoration(
+                    decoration:  InputDecoration(
                       hintText: "Enter Email Id",
                       labelText: "Email",
-                      border: OutlineInputBorder(
+                      border:OutlineInputBorder(
+                        borderSide: BorderSide(style: BorderStyle.solid),
                         borderRadius: BorderRadius.circular(5),
                       ),
-                      focusedBorder: const OutlineInputBorder(
+                      focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(style: BorderStyle.solid),
+                        borderRadius: BorderRadius.circular(5),
                       ),
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -139,6 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextFormField(
                     focusNode: _focusNodePass,
                     controller: passController,
+
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Please Enter Password";
@@ -154,11 +163,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       hintText: "Enter Password",
                       labelText: "Password",
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(5),
                       ),
                       focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(style: BorderStyle.solid),
                       ),
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+
                     ),
                   ),
                 ),
@@ -195,7 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                               const EdgeInsets.only(left: 16.0),
                                           child: InkWell(
                                               child: Icon(Icons.close,
-                                                  color: darkBlue),
+                                                  color: CustomColor.darkBlue),
                                               onTap: () {
                                                 Navigator.pop(context);
                                               }),
@@ -227,27 +238,30 @@ class _LoginScreenState extends State<LoginScreen> {
                                         decoration: InputDecoration(
                                           hintText: "Enter Email Id",
                                           labelText: "Email Id",
+                                          floatingLabelBehavior: FloatingLabelBehavior.never,
                                           hintStyle:
-                                              TextStyle(color: lightGray55),
+                                              TextStyle(color: CustomColor.lightGray55),
                                           labelStyle:
-                                              TextStyle(color: _borderColor),
+                                          TextStyle(color: _invalidValue ? Colors.red : Colors.blue),
                                           focusedBorder: OutlineInputBorder(
                                             borderRadius:
-                                                BorderRadius.circular(4),
+                                                BorderRadius.circular(0),
                                             borderSide:
-                                                BorderSide(color: darkBlue),
+                                                BorderSide(color: CustomColor.darkBlue),
                                           ),
                                           enabledBorder: OutlineInputBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(4),
+                                                  BorderRadius.circular(0),
                                               borderSide:
-                                                  BorderSide(color: lightGray)),
+                                                  BorderSide(color: CustomColor.lightGray)),
                                         ),
                                         validator: (value) {
                                           if (value!.isEmpty) {
+                                            _invalidValue = true;
                                             return "Please Enter Email";
                                           } else {
                                             if (!emailRegex.hasMatch(value)) {
+                                              _invalidValue = true;
                                               return "Please Enter Valid EmailId";
                                             } else {
                                               return null;
@@ -286,7 +300,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              color: darkBlue,
+                              color: CustomColor.darkBlue,
                               decoration: TextDecoration.underline,
                               fontFamily: "FontMainBold"),
                         ),
@@ -305,7 +319,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 44,
                     child: ElevatedButton(
                       onPressed: () {
-                        showDialog(
+                        /*showDialog(
                             context: context,
                             builder: (BuildContext context) {
                               return Dialog(
@@ -381,14 +395,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 ),
                               );
-                            });
-                       /* if(_formStateKey.currentState!.validate()){
-                          Toast.show("Validation Item",
-                              duration: Toast.lengthShort, gravity: Toast.bottom);
-                        }*/
+                            });*/
+                        if(_formStateKey.currentState!.validate()){
+                          _invalidValue = false;
+                         /* Toast.show("Validation Item",
+                              duration: Toast.lengthShort, gravity: Toast.bottom);*/
+                          context.go('/learnerList');
+                        }
                       },
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(darkBlue),
+                        backgroundColor: MaterialStateProperty.all(CustomColor.darkBlue),
                       ),
                       child: const Text(
                         "LOGIN",
@@ -405,14 +421,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Text(
-                        "Skip",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: darkBlue,
-                            decoration: TextDecoration.underline,
-                            fontFamily: "FontMainBold"),
+                      child: InkWell(
+                        onTap: () => context.pushReplacement('/learnerList'),
+                        child: Text(
+                          "Skip",
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: CustomColor.darkBlue,
+                              decoration: TextDecoration.underline,
+                              fontFamily: "FontMainBold"),
+                        ),
                       ),
                     )
                   ],

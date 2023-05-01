@@ -54,14 +54,14 @@ InputDecoration textFieldBorder({
     suffixIcon: suffixIcon,
     hintText: "Enter your password",
     labelText: "Password",
-    hintStyle: TextStyle(color: lightGray55),
+    hintStyle: const TextStyle(color: CustomColor.lightGray55),
     labelStyle: TextStyle(color: borderColor),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(4),
-      borderSide: BorderSide(color: darkBlue),
+      borderSide: const BorderSide(color: CustomColor.darkBlue),
     ),
     enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(4),
-        borderSide: BorderSide(color: lightGray)),
+        borderSide: const BorderSide(color: CustomColor.lightGray)),
   );
 }

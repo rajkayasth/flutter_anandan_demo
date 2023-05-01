@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   dropdown_textfield: ^1.0.8
   toast: ^0.3.0
+  go_router: ^7.0.0
+  url_strategy:
 
 dev_dependencies:
   flutter_test:

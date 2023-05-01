@@ -1,5 +1,9 @@
+import 'package:anandan_demo_flutter/screens/lerner_list_page.dart';
+import 'package:anandan_demo_flutter/screens/login_screen.dart';
+import 'package:anandan_demo_flutter/screens/singup_screen.dart';
 import 'package:anandan_demo_flutter/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +15,26 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final GoRouter _router = GoRouter(routes: <GoRoute>[
+      GoRoute(routes:  <GoRoute>[
+        GoRoute(
+          path: 'login',
+          builder: (context, state) => const LoginScreen(),
+        ),
+        GoRoute(
+          path: 'signUp',
+          builder: (context, state) => const SignUpScreen(),
+        ),
+        GoRoute(
+          path: 'learnerList',
+          builder: (context, state) =>  LearnersPage(),
+        ),
+      ], path: '/',
+        builder: (context, state) => const SplashScreen(),)
+    ]);
+
+
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -26,7 +49,10 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:  const SplashScreen(),
+      routerConfig: _router,
+      /*routerDelegate: _router.routerDelegate,
+      routeInformationParser:_router.routeInformationParser,
+      routeInformationProvider:_router.routeInformationProvider,*/
     );
   }
 }

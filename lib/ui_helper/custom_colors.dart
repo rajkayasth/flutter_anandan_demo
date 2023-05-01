@@ -1,6 +1,9 @@
 import 'dart:ui';
 
-Color darkBlue =  Color(0xff1E4884);
-Color lightGray = const Color(0xffE2E0E0);
-Color lightGray55 = const Color(0xff54606c80);
-Color darkGray =  Color(0xff54606C);
+
+class CustomColor{
+  static const darkBlue =  Color(0xff1E4884);
+  static const lightGray =  Color(0xffE2E0E0);
+  static const lightGray55 = Color(0xff54606c80);
+  static const darkGray =  Color(0xff54606C);
+}

@@ -1,6 +1,7 @@
 import 'package:anandan_demo_flutter/model/image_model.dart';
 import 'package:anandan_demo_flutter/ui_helper/custom_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -37,12 +38,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.initState();
     _focusNodeEmail.addListener(() {
       setState(() {
-        _borderColor = _focusNodeEmail.hasFocus ? darkBlue : Colors.grey;
+        _borderColor = _focusNodeEmail.hasFocus ? CustomColor.darkBlue : Colors.grey;
       });
     });
     /*_focusNodePass.addListener(() {
       setState(() {
-        _borderColorPass = _focusNodePass.hasFocus ? darkBlue : Colors.grey;
+        _borderColorPass = _focusNodePass.hasFocus ? CustomColor.darkBlue : Colors.grey;
       });
     });*/
   }
@@ -107,8 +108,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: 60,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(4),
-                                /*border: Border.all(color: lightGray55)*/
-                            border: !isClicked ? Border.fromBorderSide(BorderSide(color: lightGray55,width: 3)) : Border.fromBorderSide(BorderSide(color: darkBlue,width: 3))
+                                /*border: Border.all(color: CustomColor.lightGray55)*/
+                            border: !isClicked ? const Border.fromBorderSide(BorderSide(color: CustomColor.lightGray55,width: 3)) : Border.fromBorderSide(BorderSide(color: CustomColor.darkBlue,width: 3))
                             ),
                             child: Image.asset(
                               userImageList[index].imagePath,
@@ -139,15 +140,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       decoration: InputDecoration(
                         hintText: "Enter your email id",
                         labelText: "Email ID",
-                        hintStyle: TextStyle(color: lightGray55),
+                        hintStyle: TextStyle(color: CustomColor.lightGray55),
                         labelStyle: TextStyle(color: _borderColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
-                          borderSide: BorderSide(color: darkBlue),
+                          borderSide: BorderSide(color: CustomColor.darkBlue),
                         ),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4),
-                            borderSide: BorderSide(color: lightGray)),
+                            borderSide: BorderSide(color: CustomColor.lightGray)),
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -170,15 +171,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       decoration: InputDecoration(
                         hintText: "Enter your Mobile number",
                         labelText: "Mobile Number",
-                        hintStyle: TextStyle(color: lightGray55),
+                        hintStyle: TextStyle(color: CustomColor.lightGray55),
                         labelStyle: TextStyle(color: _borderColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
-                          borderSide: BorderSide(color: darkBlue),
+                          borderSide: BorderSide(color: CustomColor.darkBlue),
                         ),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4),
-                            borderSide: BorderSide(color: lightGray)),
+                            borderSide: BorderSide(color: CustomColor.lightGray)),
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -201,15 +202,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       decoration: InputDecoration(
                         hintText: "Enter your Password",
                         labelText: "Password",
-                        hintStyle: TextStyle(color: lightGray55),
+                        hintStyle: TextStyle(color: CustomColor.lightGray55),
                         labelStyle: TextStyle(color: _borderColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
-                          borderSide: BorderSide(color: darkBlue),
+                          borderSide: BorderSide(color: CustomColor.darkBlue),
                         ),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4),
-                            borderSide: BorderSide(color: lightGray)),
+                            borderSide: BorderSide(color: CustomColor.lightGray)),
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -234,15 +235,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       decoration: InputDecoration(
                         hintText: "Select",
                         labelText: "Sex",
-                        hintStyle: TextStyle(color: lightGray55),
+                        hintStyle: TextStyle(color: CustomColor.lightGray55),
                         labelStyle: TextStyle(color: _borderColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
-                          borderSide: BorderSide(color: darkBlue),
+                          borderSide: BorderSide(color: CustomColor.darkBlue),
                         ),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4),
-                            borderSide: BorderSide(color: lightGray)),
+                            borderSide: BorderSide(color: CustomColor.lightGray)),
                       ),
                       items: items.map((String items) {
                         return DropdownMenuItem(
@@ -277,15 +278,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       decoration: InputDecoration(
                         hintText: "Date Of Birth",
                         labelText: "DOB",
-                        hintStyle: TextStyle(color: lightGray55),
+                        hintStyle: TextStyle(color: CustomColor.lightGray55),
                         labelStyle: TextStyle(color: _borderColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
-                          borderSide: BorderSide(color: darkBlue),
+                          borderSide: BorderSide(color: CustomColor.darkBlue),
                         ),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4),
-                            borderSide: BorderSide(color: lightGray)),
+                            borderSide: BorderSide(color: CustomColor.lightGray)),
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -346,7 +347,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 60,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: lightGray55)),
+                            border: Border.all(color: CustomColor.lightGray55)),
                         child: Image.asset(
                           userImageList[index].imagePath,
                           width: 30,
@@ -375,15 +376,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     decoration: InputDecoration(
                       hintText: "Enter your email id",
                       labelText: "Email ID",
-                      hintStyle: TextStyle(color: lightGray55),
+                      hintStyle: TextStyle(color: CustomColor.lightGray55),
                       labelStyle: TextStyle(color: _borderColor),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4),
-                        borderSide: BorderSide(color: darkBlue),
+                        borderSide: BorderSide(color: CustomColor.darkBlue),
                       ),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
-                          borderSide: BorderSide(color: lightGray)),
+                          borderSide: BorderSide(color: CustomColor.lightGray)),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -406,15 +407,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     decoration: InputDecoration(
                       hintText: "Enter your Mobile number",
                       labelText: "Mobile Number",
-                      hintStyle: TextStyle(color: lightGray55),
+                      hintStyle: TextStyle(color: CustomColor.lightGray55),
                       labelStyle: TextStyle(color: _borderColor),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4),
-                        borderSide: BorderSide(color: darkBlue),
+                        borderSide: BorderSide(color: CustomColor.darkBlue),
                       ),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
-                          borderSide: BorderSide(color: lightGray)),
+                          borderSide: BorderSide(color: CustomColor.lightGray)),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -437,15 +438,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     decoration: InputDecoration(
                       hintText: "Enter your Password",
                       labelText: "Password",
-                      hintStyle: TextStyle(color: lightGray55),
+                      hintStyle: TextStyle(color: CustomColor.lightGray55),
                       labelStyle: TextStyle(color: _borderColor),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4),
-                        borderSide: BorderSide(color: darkBlue),
+                        borderSide: BorderSide(color: CustomColor.darkBlue),
                       ),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
-                          borderSide: BorderSide(color: lightGray)),
+                          borderSide: BorderSide(color: CustomColor.lightGray)),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -470,15 +471,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     decoration: InputDecoration(
                       hintText: "Select",
                       labelText: "Sex",
-                      hintStyle: TextStyle(color: lightGray55),
+                      hintStyle: TextStyle(color: CustomColor.lightGray55),
                       labelStyle: TextStyle(color: _borderColor),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4),
-                        borderSide: BorderSide(color: darkBlue),
+                        borderSide: BorderSide(color: CustomColor.darkBlue),
                       ),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
-                          borderSide: BorderSide(color: lightGray)),
+                          borderSide: BorderSide(color: CustomColor.lightGray)),
                     ),
                     items: items.map((String items) {
                       return DropdownMenuItem(
@@ -513,15 +514,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     decoration: InputDecoration(
                       hintText: "Date Of Birth",
                       labelText: "DOB",
-                      hintStyle: TextStyle(color: lightGray55),
+                      hintStyle: TextStyle(color: CustomColor.lightGray55),
                       labelStyle: TextStyle(color: _borderColor),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4),
-                        borderSide: BorderSide(color: darkBlue),
+                        borderSide: BorderSide(color: CustomColor.darkBlue),
                       ),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
-                          borderSide: BorderSide(color: lightGray)),
+                          borderSide: BorderSide(color: CustomColor.lightGray)),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -546,7 +547,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           canvasColor: Colors.white,
           colorScheme: Theme.of(context).colorScheme.copyWith(
             primary: Color(0xff1E4884),
-            background: darkGray,
+            background: CustomColor.darkBlue,
             secondary: Color(0xff1E4884),
           ),
         ),
@@ -555,12 +556,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
             return ElevatedButton(
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all(EdgeInsets.all(10)),
-                  backgroundColor: MaterialStateProperty.all(darkBlue),
+                  backgroundColor: MaterialStateProperty.all(CustomColor.darkBlue),
                 ),
                 onPressed: () {
                   final isLastStep = currentStep == getSteps().length - 1;
                   if (isLastStep) {
                     print("Completed");
+                    context.go('/login');
                   } else {
                     setState(() {
                       currentStep += 1;
