@@ -1,9 +1,12 @@
+import 'package:anandan_demo_flutter/screens/learner_details.dart';
 import 'package:anandan_demo_flutter/screens/lerner_list_page.dart';
 import 'package:anandan_demo_flutter/screens/login_screen.dart';
 import 'package:anandan_demo_flutter/screens/singup_screen.dart';
 import 'package:anandan_demo_flutter/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import 'model/learner_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,6 +31,11 @@ class MyApp extends StatelessWidget {
         GoRoute(
           path: 'learnerList',
           builder: (context, state) =>  LearnersPage(),
+        ),
+        GoRoute(
+          path: 'learnerDetail',
+          name: 'learnerDetails',
+          builder: (context, state) =>  LearnerDetails(learnerModel: state.extra as LearnerModel,),
         ),
       ], path: '/',
         builder: (context, state) => const SplashScreen(),)

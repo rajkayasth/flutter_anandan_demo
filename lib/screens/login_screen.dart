@@ -422,7 +422,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: InkWell(
-                        onTap: () => context.pushReplacement('/learnerList'),
+                        onTap: () => context.push('/learnerList'),
                         child: Text(
                           "Skip",
                           style: TextStyle(

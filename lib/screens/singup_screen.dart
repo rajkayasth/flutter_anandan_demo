@@ -552,6 +552,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
         ),
         child: Stepper(
+
           controlsBuilder: (context, details) {
             return ElevatedButton(
                 style: ButtonStyle(
