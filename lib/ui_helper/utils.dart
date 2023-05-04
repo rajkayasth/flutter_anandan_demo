@@ -65,3 +65,26 @@ InputDecoration textFieldBorder({
         borderSide: const BorderSide(color: CustomColor.lightGray)),
   );
 }
+
+
+InputDecoration customTextFieldStyle({String hintText="",String labelText = "",bool isLabelSelected = false}){
+  return InputDecoration(
+    hintText: hintText,
+    labelText: labelText,
+    labelStyle: TextStyle(color: isLabelSelected ? CustomColor.darkBlue :  Colors.grey ),
+    border: OutlineInputBorder(
+      borderSide: BorderSide(style: BorderStyle.solid),
+      borderRadius: BorderRadius.circular(5),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(style: BorderStyle.solid),
+      borderRadius: BorderRadius.circular(5),
+    ),
+    floatingLabelBehavior: FloatingLabelBehavior.always,
+  );
+}
+
+
+class CustomRegex{
+  static RegExp emailRegex =  RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+}

@@ -128,7 +128,7 @@ class _LearnerDetailsState extends State<LearnerDetails> {
               padding: const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
               width: double.maxFinite,
               decoration: const BoxDecoration(
-                  color: CustomColor.grayf8f8,
+                  color: CustomColor.lightGray,
                   borderRadius: BorderRadius.all(Radius.circular(5))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -219,6 +219,7 @@ class _LearnerDetailsState extends State<LearnerDetails> {
                   ),
                   Container(
                     width: double.maxFinite,
+                    margin: EdgeInsets.only(right: 8.0),
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ButtonStyle(

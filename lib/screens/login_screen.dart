@@ -1,9 +1,7 @@
-import 'package:anandan_demo_flutter/screens/singup_screen.dart';
 import 'package:anandan_demo_flutter/ui_helper/custom_colors.dart';
 import 'package:anandan_demo_flutter/ui_helper/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:toast/toast.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -32,12 +30,14 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
     _focusNodeEmail.addListener(() {
       setState(() {
-        _borderColor = _focusNodeEmail.hasFocus ? CustomColor.darkBlue : Colors.grey;
+        _borderColor =
+            _focusNodeEmail.hasFocus ? CustomColor.darkBlue : Colors.grey;
       });
     });
     _focusNodePass.addListener(() {
       setState(() {
-        _borderColorPass = _focusNodePass.hasFocus ? CustomColor.darkBlue : Colors.grey;
+        _borderColorPass =
+            _focusNodePass.hasFocus ? CustomColor.darkBlue : Colors.grey;
       });
     });
   }
@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                       /* Navigator.push(
+                        /* Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const SignUpScreen()));*/
@@ -113,19 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextFormField(
                     focusNode: _focusNodeEmail,
                     controller: emailController,
-                    decoration:  InputDecoration(
-                      hintText: "Enter Email Id",
-                      labelText: "Email",
-                      border:OutlineInputBorder(
-                        borderSide: BorderSide(style: BorderStyle.solid),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(style: BorderStyle.solid),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                    ),
+                    decoration: customTextFieldStyle(hintText: "Enter Your EmailId",labelText: "Email Id",isLabelSelected: _invalidValue),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Please Enter Email";
@@ -147,7 +135,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextFormField(
                     focusNode: _focusNodePass,
                     controller: passController,
-
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Please Enter Password";
@@ -159,18 +146,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                       }
                     },
-                    decoration: InputDecoration(
-                      hintText: "Enter Password",
-                      labelText: "Password",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(style: BorderStyle.solid),
-                      ),
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-
-                    ),
+                    decoration: customTextFieldStyle(
+                        hintText: "Enter Your Password",
+                        labelText: "Password",
+                        isLabelSelected: _invalidValue),
                   ),
                 ),
                 const SizedBox(
@@ -232,29 +211,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                     Padding(
                                       padding: const EdgeInsets.all(16.0),
                                       child: TextFormField(
-                                        /*focusNode: _focusNodeEmail,
-                  controller: emailController,*/
-
-                                        decoration: InputDecoration(
-                                          hintText: "Enter Email Id",
-                                          labelText: "Email Id",
-                                          floatingLabelBehavior: FloatingLabelBehavior.never,
-                                          hintStyle:
-                                              TextStyle(color: CustomColor.lightGray55),
-                                          labelStyle:
-                                          TextStyle(color: _invalidValue ? Colors.red : Colors.blue),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(0),
-                                            borderSide:
-                                                BorderSide(color: CustomColor.darkBlue),
-                                          ),
-                                          enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(0),
-                                              borderSide:
-                                                  BorderSide(color: CustomColor.lightGray)),
-                                        ),
+                                        decoration: customTextFieldStyle(
+                                            hintText: "Enter Your Email Id",
+                                            labelText: "Email Id",
+                                            isLabelSelected: _invalidValue),
                                         validator: (value) {
                                           if (value!.isEmpty) {
                                             _invalidValue = true;
@@ -396,15 +356,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               );
                             });*/
-                        if(_formStateKey.currentState!.validate()){
+                        if (_formStateKey.currentState!.validate()) {
                           _invalidValue = false;
-                         /* Toast.show("Validation Item",
+                          /* Toast.show("Validation Item",
                               duration: Toast.lengthShort, gravity: Toast.bottom);*/
                           context.go('/learnerList');
                         }
                       },
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(CustomColor.darkBlue),
+                        backgroundColor:
+                            MaterialStateProperty.all(CustomColor.darkBlue),
                       ),
                       child: const Text(
                         "LOGIN",

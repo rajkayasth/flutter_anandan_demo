@@ -7,8 +7,11 @@ import 'package:go_router/go_router.dart';
 import '../model/learner_model.dart';
 
 class LearnersPage extends StatefulWidget {
+  LearnersPage({Key? key, required this.learnerModel}) : super(key: key);
+
   @override
   State<LearnersPage> createState() => _LearnersPageState();
+  final LearnerModel? learnerModel;
 }
 
 class _LearnersPageState extends State<LearnersPage> {
@@ -58,10 +61,21 @@ class _LearnersPageState extends State<LearnersPage> {
         imagePath: "assets/images/person4.png",
         expireColor: Colors.red));
 
+
+    setState(() {
+      if(widget.learnerModel != null){
+        learnerList.add(widget.learnerModel!);
+      }
+    });
+
+
     return Scaffold(
       appBar: CustomAppBar(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          //Opening Add Learner Page
+          context.pushReplacement('/addLearner');
+        },
         child: Icon(Icons.add, color: CustomColor.darkBlue, size: 45),
         backgroundColor: Colors.yellow,),
       body: ListView.builder(
@@ -71,7 +85,7 @@ class _LearnersPageState extends State<LearnersPage> {
               context.push('/learnerDetail', extra: learnerList[index]);
             },
             child: Container(
-              margin: const EdgeInsets.only(top: 16, left: 16, right: 16),
+              margin: const EdgeInsets.only(top: 16, left: 16, right: 16,bottom: 16.0),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(10),
