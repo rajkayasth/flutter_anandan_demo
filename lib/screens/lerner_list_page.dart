@@ -61,23 +61,24 @@ class _LearnersPageState extends State<LearnersPage> {
         imagePath: "assets/images/person4.png",
         expireColor: Colors.red));
 
-
     setState(() {
-      if(widget.learnerModel != null){
+      if (widget.learnerModel != null) {
         learnerList.add(widget.learnerModel!);
       }
     });
 
-
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: CustomAppBar(onTap: () {
+        context.push('/quote');
+      },title: "Learner List"),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           //Opening Add Learner Page
           context.pushReplacement('/addLearner');
         },
         child: Icon(Icons.add, color: CustomColor.darkBlue, size: 45),
-        backgroundColor: Colors.yellow,),
+        backgroundColor: Colors.yellow,
+      ),
       body: ListView.builder(
         itemBuilder: (context, index) {
           return GestureDetector(
@@ -85,14 +86,15 @@ class _LearnersPageState extends State<LearnersPage> {
               context.push('/learnerDetail', extra: learnerList[index]);
             },
             child: Container(
-              margin: const EdgeInsets.only(top: 16, left: 16, right: 16,bottom: 16.0),
+              margin: const EdgeInsets.only(
+                  top: 16, left: 16, right: 16, bottom: 16.0),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 8.0, top: 8.0, bottom: 8.0),
+                padding:
+                    const EdgeInsets.only(left: 8.0, top: 8.0, bottom: 8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -131,13 +133,12 @@ class _LearnersPageState extends State<LearnersPage> {
                                     children: [
                                       Padding(
                                         padding:
-                                        const EdgeInsets.only(top: 5.0),
+                                            const EdgeInsets.only(top: 5.0),
                                         child: Text(
                                           learnerList[index].gender,
                                           style: titleTextStyle16(
                                               fontWeight: FontWeight.bold,
-                                              textColor:
-                                              CustomColor.darkGray),
+                                              textColor: CustomColor.darkGray),
                                         ),
                                       ),
                                       const Padding(
@@ -154,13 +155,12 @@ class _LearnersPageState extends State<LearnersPage> {
                                       ),
                                       Padding(
                                         padding:
-                                        const EdgeInsets.only(top: 5.0),
+                                            const EdgeInsets.only(top: 5.0),
                                         child: Text(
                                           learnerList[index].age,
                                           style: titleTextStyle16(
                                               fontWeight: FontWeight.bold,
-                                              textColor:
-                                              CustomColor.darkGray),
+                                              textColor: CustomColor.darkGray),
                                         ),
                                       ),
                                     ],
@@ -181,9 +181,7 @@ class _LearnersPageState extends State<LearnersPage> {
                           ),
                         ),
                         Container(
-                          constraints: const BoxConstraints(
-                              minWidth: 80
-                          ),
+                          constraints: const BoxConstraints(minWidth: 80),
                           decoration: BoxDecoration(
                             color: learnerList[index].expireColor,
                             borderRadius: const BorderRadius.only(

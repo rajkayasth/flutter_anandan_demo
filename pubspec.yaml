@@ -39,6 +39,7 @@ dependencies:
   toast: ^0.3.0
   go_router: ^7.0.0
   url_strategy:
+  http: ^0.13.6
 
 dev_dependencies:
   flutter_test:

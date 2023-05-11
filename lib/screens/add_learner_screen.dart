@@ -52,7 +52,7 @@ class _AddLearnerPageState extends State<AddLearnerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: CustomAppBar(onTap: () {  },title: "Add Learner"),
       body: Form(
         key: _formStateKey,
         child: SingleChildScrollView(

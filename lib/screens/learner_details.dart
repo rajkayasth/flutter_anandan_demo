@@ -30,7 +30,7 @@ class _LearnerDetailsState extends State<LearnerDetails> {
     diagnosisList.add(DiagonsisModel(name: "Diagnosis 1"));
     diagnosisList.add(DiagonsisModel(name: "Diagnosis 1"));
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: CustomAppBar(onTap: () {  },title: "Learner Details"),
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,

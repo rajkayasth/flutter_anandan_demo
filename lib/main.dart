@@ -2,8 +2,10 @@ import 'package:anandan_demo_flutter/screens/add_learner_screen.dart';
 import 'package:anandan_demo_flutter/screens/learner_details.dart';
 import 'package:anandan_demo_flutter/screens/lerner_list_page.dart';
 import 'package:anandan_demo_flutter/screens/login_screen.dart';
+import 'package:anandan_demo_flutter/screens/qoutes_screen.dart';
 import 'package:anandan_demo_flutter/screens/singup_screen.dart';
 import 'package:anandan_demo_flutter/screens/splash_screen.dart';
+import 'package:anandan_demo_flutter/screens/user_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -44,6 +46,16 @@ class MyApp extends StatelessWidget {
           path: 'addLearner',
           name: 'addLearner',
           builder: (context, state) =>  const AddLearnerPage(),
+        ),
+        GoRoute(
+          path: 'quote',
+          name: 'quotePage',
+          builder: (context, state) =>  const QuoteScreen(),
+        ),
+        GoRoute(
+          path: 'userData',
+          name: 'userDataScreen',
+          builder: (context, state) =>  const UserScreen(),
         ),
       ], path: '/',
         builder: (context, state) => const SplashScreen(),)
