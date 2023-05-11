@@ -1,7 +1,7 @@
 import 'package:anandan_demo_flutter/ui_helper/custom_colors.dart';
 import 'package:flutter/material.dart';
 
-AppBar CustomAppBar({required VoidCallback onTap,required String title}) {
+AppBar CustomAppBar({required VoidCallback onTap,required String title,required VoidCallback leadingIconTap}) {
   return AppBar(
     title:  Text(
       title,
@@ -11,13 +11,16 @@ AppBar CustomAppBar({required VoidCallback onTap,required String title}) {
           fontWeight: FontWeight.bold,
           fontFamily: "FontMainBold"),
     ),
-    leading: CircleAvatar(
-      backgroundColor: Colors.white,
-      child: Image.asset(
-        "assets/images/man.png",
-        height: 30,
-        width: 30,
-        fit: BoxFit.cover,
+    leading: InkWell(
+      onTap: leadingIconTap,
+      child: CircleAvatar(
+        backgroundColor: Colors.white,
+        child: Image.asset(
+          "assets/images/man.png",
+          height: 30,
+          width: 30,
+          fit: BoxFit.cover,
+        ),
       ),
     ),
     backgroundColor: Colors.white,

@@ -5,6 +5,7 @@ import 'package:anandan_demo_flutter/screens/login_screen.dart';
 import 'package:anandan_demo_flutter/screens/qoutes_screen.dart';
 import 'package:anandan_demo_flutter/screens/singup_screen.dart';
 import 'package:anandan_demo_flutter/screens/splash_screen.dart';
+import 'package:anandan_demo_flutter/screens/user_detail_screen.dart';
 import 'package:anandan_demo_flutter/screens/user_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -56,6 +57,11 @@ class MyApp extends StatelessWidget {
           path: 'userData',
           name: 'userDataScreen',
           builder: (context, state) =>  const UserScreen(),
+        ),
+        GoRoute(
+          path: 'userDetailsScreen',
+          name: 'userDetailsScreen',
+          builder: (context, state) =>  const UserDetailsScreen(),
         ),
       ], path: '/',
         builder: (context, state) => const SplashScreen(),)

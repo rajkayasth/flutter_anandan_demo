@@ -2,14 +2,51 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:anandan_demo_flutter/model/QuotesModel.dart';
+import 'package:anandan_demo_flutter/model/TestModel.dart';
+import 'package:anandan_demo_flutter/model/UserImageModel.dart';
 import 'package:anandan_demo_flutter/model/UserModel.dart';
 import 'package:anandan_demo_flutter/model/post_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 
 class ApiInterface {
   var client = http.Client();
 
+
+  Dio? dio;
+
+  ApiInterface() {
+    if (dio == null) {
+      BaseOptions options = BaseOptions(
+          baseUrl: "https://jsonplaceholder.typicode.com/photos",
+          receiveDataWhenStatusError: true,
+          connectTimeout: const Duration(seconds: 60), // 60 seconds
+          receiveTimeout:  const Duration(seconds: 60)// 60 seconds
+      );
+
+
+
+      dio = Dio(options);
+      dio?.interceptors.add(InterceptorsWrapper(
+        onRequest: (options, handler) {
+          debugPrint(options.path);
+          return handler.next(options);
+        },
+        onResponse: (e, handler) {
+          debugPrint("${e.statusCode}/n${e.requestOptions.queryParameters}");
+          debugPrint(e.statusMessage.toString());
+          debugPrint(e.data.toString());
+          return handler.next(e);
+        },
+        onError: (e, handler) {
+          debugPrint(e.stackTrace.toString());
+          return handler.next(e);
+        },
+
+      ));
+    }
+  }
   Future<List<PostModel>?> getPosts() async {
     var uri = Uri.parse('https://jsonplaceholder.typicode.com/posts');
 
@@ -35,8 +72,14 @@ class ApiInterface {
       var response = await client.get(uri);
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
+        var data1 = jsonDecode(response.body);
+     /*  var userModel =  List<Map<String,dynamic>>.from(data1).forEach((element) {
+         debugPrint(element['name']);
+         UserModel(name: element['name'],id: element['id'],);
+       });*/
+
         for (Map i in data) {
-          debugPrint(i['name']);
+
           userList.add(UserModel.fromJson(i));
         }
         return userList;
@@ -62,4 +105,52 @@ class ApiInterface {
       print("Internet Connection not available");
     }
   }
+
+  Future<List<UserImageModel>?> getUserImageData() async {
+    try {
+      var uri = Uri.parse('https://jsonplaceholder.typicode.com/photos');
+
+
+    /*  dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) {
+        debugPrint(options.uri.toString());
+        return handler.next(options);
+      },onResponse: (e, handler) {
+        debugPrint(e.statusMessage);
+        debugPrint(e.data);
+        return handler.next(e);
+      },onError: (e, handler) {
+        return handler.next(e);
+      },));*/
+
+      var response = await dio!.getUri(uri);
+      List<UserImageModel> userImageList = [];
+      if (response.statusCode == 200) {
+        var json = response.data;
+        //var data = jsonDecode(json);
+
+
+
+        for (Map<String,dynamic> i in json) {
+         // debugPrint(i['title']);
+          userImageList.add(UserImageModel.fromJson(i));
+        }
+        return userImageList;
+      }
+      else{
+        return userImageList;
+      }
+    } on DioError catch(e) {
+
+      if(e.response != null){
+        debugPrint(e.message);
+        debugPrint(e.response?.statusCode.toString());
+        debugPrint(e.response?.requestOptions.toString());      }
+      else{
+        debugPrint(e.message);
+        debugPrint(e.requestOptions.toString());
+
+      }
+    }
+  }
+
 }

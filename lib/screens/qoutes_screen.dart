@@ -51,7 +51,7 @@ class _QuoteScreenState extends State<QuoteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(onTap: () {}, title: "Quotes Screen"),
+      appBar: CustomAppBar(leadingIconTap: () {},onTap: () {}, title: "Quotes Screen"),
       body: Visibility(
         visible: isLoaded,
         replacement: const Center(

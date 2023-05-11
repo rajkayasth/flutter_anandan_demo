@@ -68,7 +68,9 @@ class _LearnersPageState extends State<LearnersPage> {
     });
 
     return Scaffold(
-      appBar: CustomAppBar(onTap: () {
+      appBar: CustomAppBar(leadingIconTap: () {
+        context.push('/userDetailsScreen');
+      },onTap: () {
         context.push('/quote');
       },title: "Learner List"),
       floatingActionButton: FloatingActionButton(
