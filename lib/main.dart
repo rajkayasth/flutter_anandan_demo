@@ -1,4 +1,5 @@
 import 'package:anandan_demo_flutter/screens/add_learner_screen.dart';
+import 'package:anandan_demo_flutter/screens/image_screen.dart';
 import 'package:anandan_demo_flutter/screens/learner_details.dart';
 import 'package:anandan_demo_flutter/screens/lerner_list_page.dart';
 import 'package:anandan_demo_flutter/screens/login_screen.dart';
@@ -62,6 +63,11 @@ class MyApp extends StatelessWidget {
           path: 'userDetailsScreen',
           name: 'userDetailsScreen',
           builder: (context, state) =>  const UserDetailsScreen(),
+        ),
+        GoRoute(
+          path: 'selectImage',
+          name: 'selectImage',
+          builder: (context, state) =>  const SelectImageScreen(),
         ),
       ], path: '/',
         builder: (context, state) => const SplashScreen(),)

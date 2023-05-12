@@ -69,7 +69,7 @@ class _LearnersPageState extends State<LearnersPage> {
 
     return Scaffold(
       appBar: CustomAppBar(leadingIconTap: () {
-        context.push('/userDetailsScreen');
+        context.push('/selectImage');
       },onTap: () {
         context.push('/quote');
       },title: "Learner List"),
