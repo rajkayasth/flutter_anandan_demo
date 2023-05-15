@@ -1,3 +1,4 @@
+import 'package:anandan_demo_flutter/model/UserPostResponse.dart';
 import 'package:anandan_demo_flutter/screens/add_learner_screen.dart';
 import 'package:anandan_demo_flutter/screens/image_screen.dart';
 import 'package:anandan_demo_flutter/screens/learner_details.dart';
@@ -8,6 +9,7 @@ import 'package:anandan_demo_flutter/screens/singup_screen.dart';
 import 'package:anandan_demo_flutter/screens/splash_screen.dart';
 import 'package:anandan_demo_flutter/screens/user_detail_screen.dart';
 import 'package:anandan_demo_flutter/screens/user_list_screen.dart';
+import 'package:anandan_demo_flutter/screens/user_post_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -68,6 +70,11 @@ class MyApp extends StatelessWidget {
           path: 'selectImage',
           name: 'selectImage',
           builder: (context, state) =>  const SelectImageScreen(),
+        ),
+        GoRoute(
+          path: 'userPostScreen',
+          name: 'userPostScreen',
+          builder: (context, state) =>   UserPostScreen(userPostResponse: state.extra as UserPostResponse,),
         ),
       ], path: '/',
         builder: (context, state) => const SplashScreen(),)
